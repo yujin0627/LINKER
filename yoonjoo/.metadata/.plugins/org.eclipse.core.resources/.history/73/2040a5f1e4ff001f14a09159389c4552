@@ -1,0 +1,12 @@
+package com.linker.model;
+
+import java.sql.Timestamp;
+
+public class ReviewDTO {
+	private int reviewId;
+	private int productDetailId;
+	private String reviewContent;
+	private Timestamp reviewCreatedAt;
+	private int userId;
+
+}

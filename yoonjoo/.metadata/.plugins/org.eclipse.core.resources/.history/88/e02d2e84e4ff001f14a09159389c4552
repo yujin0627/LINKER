@@ -1,0 +1,11 @@
+package com.linker.model;
+
+public class OrderDetailDTO {
+	private int orderId;
+	private int productDetailId;
+	private int productCnt;
+	
+	
+	
+	
+}

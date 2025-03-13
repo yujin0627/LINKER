@@ -7,3 +7,6 @@
 1741847896333	Rename type 'Linker'
 1741848029020	Rename type 'LinkerServer'
 1741848821603	Rename package 'com.linker.model'
+1741854029138	Rename type 'orderProductDTO'
+1741854036866	Rename type 'paymentDTO'
+1741854060425	Rename type 'OrderDetailDTP'

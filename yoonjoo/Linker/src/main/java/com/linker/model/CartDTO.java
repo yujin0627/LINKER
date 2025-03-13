@@ -49,8 +49,5 @@ public class CartDTO {
 	public void setProductDetailId(int productDetailId) {
 		this.productDetailId = productDetailId;
 	}
-	
-	
-	
 
 }

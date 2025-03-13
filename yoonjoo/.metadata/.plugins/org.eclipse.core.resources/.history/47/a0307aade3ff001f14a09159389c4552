@@ -1,0 +1,13 @@
+package com.linker.model;
+
+import java.sql.Timestamp;
+
+public class paymentDTO {
+	private int paymentId;
+	private int paymentAmount;
+	private String paymentMethod;
+	private String paymentStatus;
+	private Timestamp paymentDate;
+	private int cartId;
+
+}
