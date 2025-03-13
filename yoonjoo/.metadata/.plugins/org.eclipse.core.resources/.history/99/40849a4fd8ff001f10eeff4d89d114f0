@@ -1,0 +1,31 @@
+package com.linker.dao;
+
+public class LinkerDAO {
+	
+	 public Product getProductDetails(int productId) {
+	        Product product = null;
+	        String query = "SELECT * FROM products WHERE product_id = ?";
+	        
+	        try (Connection conn = DBConnection.getConnection();
+	             PreparedStatement pstmt = conn.prepareStatement(query)) {
+	             
+	            pstmt.setInt(1, productId);
+	            ResultSet rs = pstmt.executeQuery();
+	            
+	            if (rs.next()) {
+	                product = new Product(
+	                    rs.getInt("product_id"),
+	                    rs.getString("name"),
+	                    rs.getString("description"),
+	                    rs.getDouble("price"),
+	                    rs.getInt("stock")
+	                );
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return product;
+	    }
+
+}

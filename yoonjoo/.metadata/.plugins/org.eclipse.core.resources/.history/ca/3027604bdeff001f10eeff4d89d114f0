@@ -1,0 +1,17 @@
+package com.linker.model;
+
+import java.sql.Timestamp;
+
+public class RequestOfferDTO {
+	private int requestOfferId;
+	private String requestStatus;
+	private Timestamp requestOfferDate;
+	private int requestID;
+	private int userID;
+	
+	public RequestOfferDTO() {
+		super();
+	}
+
+	
+}

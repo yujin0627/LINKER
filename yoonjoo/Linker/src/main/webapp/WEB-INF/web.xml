@@ -1,0 +1,11 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="3.0">
+    <servlet>
+        <servlet-name>LinkerController</servlet-name>
+        <servlet-class>com.myweb.controller.LinkerController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LinkerController</servlet-name>
+        <url-pattern>*.linker</url-pattern>
+    </servlet-mapping>
+</web-app>
