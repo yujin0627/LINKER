@@ -1,0 +1,195 @@
+--member 테이블 삭제(혹시 있나 확인)
+DROP TABLE MEMBER;
+--member 테이블 생성
+CREATE TABLE MEMBER (
+    user_id     NUMBER PRIMARY KEY,
+    user_name   VARCHAR2(20) NOT NULL,
+    email       VARCHAR2(20) UNIQUE NOT NULL,
+    password    VARCHAR2(20) NOT NULL,
+    phone       VARCHAR2(20),
+    created_at  TIMESTAMP DEFAULT SYSTIMESTAMP,
+    mem_code    VARCHAR2(30),
+    cart_id     NUMBER
+);
+--member 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE member_seq;
+--member시퀀스 생성
+CREATE SEQUENCE member_seq START WITH 1 INCREMENT BY 1;
+
+--QnA 테이블 삭제(혹시 있을 테이블 삭제)
+DROP TABLE QnA;
+--QnA 테이블 생성
+CREATE TABLE QnA (
+    qna_id          NUMBER PRIMARY KEY,
+    qna_title       VARCHAR2(30) NOT NULL,
+    qna_content     VARCHAR2(300) NOT NULL,
+    qna_status      VARCHAR2(30),
+    qna_created_at  TIMESTAMP DEFAULT SYSTIMESTAMP,
+    user_id         NUMBER,
+    CONSTRAINT fk_qna_user FOREIGN KEY (user_id)
+    REFERENCES MEMBER (user_id)
+    ON DELETE CASCADE
+);
+--QnA 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE qna_seq;
+--QnA시퀀스 생성
+CREATE SEQUENCE qna_seq START WITH 1 INCREMENT BY 1;
+
+--REQUEST 테이블 삭제(있을 수도 있는 테이블 삭제)
+DROP TABLE REQUEST;
+--REQUEST 테이블 생성
+CREATE TABLE REQUEST(
+    request_id          NUMBER PRIMARY KEY,
+    request_title       VARCHAR2(30) NOT NULL,
+    request_content     VARCHAR2(300) NOT NULL,
+    request_created_at  TIMESTAMP DEFAULT SYSTIMESTAMP,
+    user_id             NUMBER,
+    CONSTRAINT fk_request_user FOREIGN KEY (user_id)
+    REFERENCES MEMBER (user_id)
+    ON DELETE CASCADE
+);
+--request 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE request_seq;
+--request시퀀스 생성
+CREATE SEQUENCE request_seq START WITH 1 INCREMENT BY 1;
+
+--REQUEST_OFFER 테이블 삭제(혹시 있을수 있는 테이블 삭제)
+DROP TABLE REQUEST_OFFER;
+--REQUEST_OFFER 테이블 생성
+CREATE TABLE REQUEST_OFFER(
+    request_offer_id    NUMBER PRIMARY KEY,
+    request_status      VARCHAR2(30),
+    request_offer_date  TIMESTAMP DEFAULT SYSTIMESTAMP,
+    request_id          NUMBER,
+    user_id             NUMBER,
+    CONSTRAINT fk_offer_request FOREIGN KEY (request_id)
+    REFERENCES REQUEST (request_id)
+    ON DELETE CASCADE,
+    CONSTRAINT fk_offer_user FOREIGN KEY (user_id)
+    REFERENCES MEMBER (user_id)
+    ON DELETE CASCADE
+);
+--request_offer 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE request_offer_seq;
+--request_offer 시퀀스 생성
+CREATE SEQUENCE request_offer_seq START WITH 1 INCREMENT BY 1;
+
+--PRODUCT_DETAIL 삭제 (혹시 있을수도 있으니까)
+DROP TABLE PRODUCT_DETATIL;
+--PRODUCT_DETAIL 테이블 생성
+CREATE TABLE PRODUCT_DETAIL(
+    product_detail_id       NUMBER PRIMARY KEY,
+    product_image           BLOB,
+    product_description     VARCHAR2(1000) NOT NULL,
+    product_contact_info    VARCHAR2(30),
+    product_created_at      TIMESTAMP DEFAULT SYSTIMESTAMP,
+    product_price           NUMBER NOT NULL,
+    product_type            VARCHAR2(30),
+    user_id                 NUMBER,
+    CONSTRAINT fk_product_detail_user FOREIGN KEY (user_id)
+    REFERENCES MEMBER (user_id)
+    ON DELETE CASCADE
+);
+--product_detail 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE product_detail_seq;
+--product_detail 시퀀스 생성
+CREATE SEQUENCE product_detail_seq START WITH 1 INCREMENT BY 1;
+
+--CART 테이블 삭제(혹시 있을수도 있으니까)
+DROP TABLE CART;
+--CART 테이블 생성
+CREATE TABLE CART(
+    cart_id             NUMBER PRIMARY KEY,
+    buyer_id            NUMBER NOT NULL,
+    quantity            NUMBER NOT NULL,
+    product_detail_id   NUMBER,
+    CONSTRAINT fk_cart_product_detail FOREIGN KEY (product_detail_id)
+    REFERENCES PRODUCT_DETAIL (product_detail_id)
+    ON DELETE CASCADE
+);
+--CART 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE cart_seq;
+--CART 시퀀스 생성
+CREATE SEQUENCE cart_seq START WITH 1 INCREMENT BY 1;
+
+--PAYMENT 테이블 삭제(혹시 있을수도 있으니까)
+DROP TABLE PAYMENT;
+--PAYMENT 테이블 생성
+CREATE TABLE PAYMENT(
+    payment_id      NUMBER PRIMARY KEY,
+    payment_amount  NUMBER NOT NULL,
+    payment_method  VARCHAR2(30) NOT NULL,
+    payment_status  VARCHAR2(30) NOT NULL,
+    payment_date    TIMESTAMP DEFAULT SYSTIMESTAMP,
+    cart_id         NUMBER,
+    CONSTRAINT fk_payment_cart FOREIGN KEY (cart_id)
+    REFERENCES CART (cart_id)
+    ON DELETE CASCADE
+);
+--PAYMENT 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE payment_seq;
+--PAYMENT 시퀀스 생성
+CREATE SEQUENCE payment_seq START WITH 1 INCREMENT BY 1;
+
+--ORDER 테이블 삭제 (혹시 있을수도 있으니까)
+DROP TABLE ORDER_PRODUCT;
+--ORDER 테이블 생성
+CREATE TABLE ORDER_PRODUCT (
+    order_id            NUMBER PRIMARY KEY,
+    selected_options    VARCHAR2(30),
+    order_date          TIMESTAMP DEFAULT SYSTIMESTAMP,
+    user_id             NUMBER,
+    CONSTRAINT fk_order_user FOREIGN KEY (user_id) 
+    REFERENCES MEMBER(user_id) 
+    ON DELETE CASCADE
+);
+--ORDER_PRODUCT 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE order_product_seq;
+--ORDER_PRODUCT 시퀀스 생성
+CREATE SEQUENCE order_product_seq START WITH 1 INCREMENT BY 1;
+
+--ORDER_DETAIL 테이블 삭제(혹시 있을수도 있으니까)
+DROP TABLE ORDER_DETAIL;
+--ORDER_DETAIL 테이블 생성
+CREATE TABLE ORDER_DETAIL(
+    order_id NUMBER,
+    product_detail_id NUMBER,
+    product_cnt NUMBER NOT NULL,
+    PRIMARY KEY (order_id, product_detail_id),
+    CONSTRAINT fk_orderdetail_order FOREIGN KEY (order_id) 
+    REFERENCES ORDER_PRODUCT(order_id) 
+    ON DELETE CASCADE,
+    CONSTRAINT fk_orderdetail_product FOREIGN KEY (product_detail_id) 
+    REFERENCES PRODUCT_DETAIL(product_detail_id) 
+    ON DELETE CASCADE
+);
+--ORDER_DETAIL 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE order_detail_seq;
+--ORDER_DETAIL 시퀀스 생성
+CREATE SEQUENCE order_detail_seq START WITH 1 INCREMENT BY 1;
+
+--REVIEW 테이블 삭제(혹시 있을수도 있으니까)
+DROP TABLE REVIEW;
+--REVIEW 테이블 생성
+CREATE TABLE REVIEW(
+    review_id NUMBER PRIMARY KEY,
+    product_detail_id NUMBER,
+    review_content VARCHAR2(1000) NOT NULL,
+    review_created_at TIMESTAMP DEFAULT SYSTIMESTAMP,
+    user_id NUMBER,
+    CONSTRAINT fk_review_product FOREIGN KEY (product_detail_id) 
+    REFERENCES PRODUCT_DETAIL(product_detail_id) 
+    ON DELETE CASCADE,
+    CONSTRAINT fk_review_user FOREIGN KEY (user_id) 
+    REFERENCES MEMBER(user_id) 
+    ON DELETE CASCADE
+);
+--REVIEW 시퀀스 삭제 (혹시 있을수도 있는 시퀀스 삭제)
+DROP SEQUENCE review_seq;
+--REVIEW 시퀀스 생성
+CREATE SEQUENCE review_seq START WITH 1 INCREMENT BY 1;
+
+
+
+
+

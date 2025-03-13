@@ -1,0 +1,8 @@
+package com.linker.model;
+
+public class ProductDTO {
+	private int productDetailId;
+	private byte[] productImage; 
+	private String productDescription;
+
+}

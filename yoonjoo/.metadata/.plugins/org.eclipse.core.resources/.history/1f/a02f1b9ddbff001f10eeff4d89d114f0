@@ -1,0 +1,5 @@
+package com.linker.model;
+
+public class MemeberDTO {
+
+}
