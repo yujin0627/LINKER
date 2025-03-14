@@ -1,0 +1,5 @@
+package com.LINKER.payment.model;
+
+public class PaymentDAO {
+
+}

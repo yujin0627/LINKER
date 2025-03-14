@@ -1,0 +1,5 @@
+package com.LINKER.qna.model;
+
+public class QnaDAO {
+
+}

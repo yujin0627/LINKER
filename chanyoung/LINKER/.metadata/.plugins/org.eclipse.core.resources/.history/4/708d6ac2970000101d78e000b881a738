@@ -1,0 +1,5 @@
+package com.LINKER.review.model;
+
+public class ReviewDAO {
+
+}
