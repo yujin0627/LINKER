@@ -11,6 +11,10 @@ header{ height: 100px;width: 1200px;margin: 0 auto;}
 /* header_first_line */
 .header_first_line{ display: flex; justify-content: space-between; align-items: center; height: 60px;}
 
+/** logo **/
+.header_first_line img{width: 100%; height: 45px;margin-top: 7px;}
+.logo_box{width: 60px;height: 60px;border-radius: 50px;background: #E2DCA7;margin-top: 10px;}
+
 /** header_top_menu **/
 .header_top_menu button{ width: 84px;height: 36px; border-radius: 5px; border-style: none; margin-right: 5px;}
 
@@ -45,10 +49,29 @@ header{ height: 100px;width: 1200px;margin: 0 auto;}
 #header_bottom_line{border-bottom: 1px solid #E2DCA7;}
 
 #semi_wrap{position: fixed;width: 100%; height: 101px; top: 0;background: #fff; z-index: 10;}
+
+
 /* section */
-section{}
+section{width: 100%; margin-top: 101px;}
+
+/** slide */
+#slide{width: 1200px;height: 480px; position: relative; overflow:hidden; margin: 0 auto; padding: 30px 0;}
+#slide div{width: 100%;height: 100%;position: absolute; left: 100%; cursor: pointer;}
+#slide div:nth-child(1){left:0;background: url("/jongsu/img/slide1.png") center no-repeat;}
+#slide div:nth-child(2){background: url("/jongsu/img/slide2.png") center no-repeat;}
+#slide div:nth-child(3){background: url("/jongsu/img/slide3.png") center no-repeat;}
+
+/** section_banner **/
+.section_banner{width: 1200px; height: 350px;background: #E2DCA7; margin: 0 auto;margin-top: 30px;display: flex; justify-content: space-between; align-items: center;}
+
+.left_banner{padding-left: 150px;}
+.left_banner_word{width: 300px;height: 70px; overflow: hidden;font-size: 28px;}
+.left_banner_word strong{float: left;margin-bottom: -8px; color: #2F4858;}
+.left_banner input{background: #2F4858; color: #fff;width: 200px;height: 45px;border-radius: 5px;margin-top: 30px;}
+
+
+.right_banner img{width: 650px;} 
 
 
 
 /* footer */
-
