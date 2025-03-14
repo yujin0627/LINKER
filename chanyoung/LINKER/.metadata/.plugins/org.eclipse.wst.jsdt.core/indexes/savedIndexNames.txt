@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\user\Desktop\LINKER\chanyoung\LINKER\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3156134889.index
+1527736869.index
+1902933430.index
+3826184470.index
+4129558999.index
+3486978995.index

@@ -1,0 +1,5 @@
+package com.LINKER.requestOffer.model;
+
+public class RequestOfferDAO {
+
+}
